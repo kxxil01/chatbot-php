@@ -3,7 +3,7 @@ include 'koneksiaya.php';
 
 function tulis_log($msg)
 {
-        $file_log="./log/komcadhelpdesk-";
+        $file_log="./log/helpdesk-";
         $fp=fopen($file_log.date("Ymd").".log","a");
         fwrite($fp,date("Y-m-d H:i:s")." >> [".getmypid()."] >> ".$msg."\n");
         fclose($fp);
@@ -17,7 +17,7 @@ tulis_log("ini dari rapiwha textnya = " . $didil);
 $phoneno= $dodol['from'];
 tulis_log("ini nomer yang di catat = " . $phoneno);
 $datareply=array();
-$datareply['autoreply']="Selamat datang di Layanan Bantuan Komcad. Silakan pilih menu layanan:\n1. Pengaduan\n2. Status nomor pengaduan";
+$datareply['autoreply']="Selamat datang di Layanan Bantuan. Silakan pilih menu layanan:\n1. Pengaduan\n2. Status nomor pengaduan";
 $sukses=1;
 $tstamp=date("U");
 $waktu = date("Y-m-d H:i:s");
@@ -62,11 +62,11 @@ elseif (($didil=="A") or ($didil=="a") or ($didil=="Personal") or ($didil=="pers
 		tulis_log("gagal insert {$sqlinsert}: ". mysqli_error($con));
 	}
 	else{
-		$datareply['autoreply']="Silakan klik tautan berikut untuk menuliskan pengaduan anggota Komcad: https://komcad.kemhan.go.id/peta/index.html?data_pengaduan=$idform \nKetik menu untuk kembali ke menu utama.";
+		$datareply['autoreply']="Silakan klik tautan berikut untuk menuliskan pengaduan anggota, Ketik menu untuk kembali ke menu utama.";
 	}
 
 	tulis_log("mulai hitung intent pengaduan personal");
-	$isinya= ("Pengaduan Personal Komcad");
+	$isinya= ("Pengaduan Personal");
     isi_intent($isinya,$phoneno,$tstamp,$waktu);
 
 }
